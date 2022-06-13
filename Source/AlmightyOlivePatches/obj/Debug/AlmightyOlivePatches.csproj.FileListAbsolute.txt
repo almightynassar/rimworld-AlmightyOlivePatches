@@ -1,4 +1,0 @@
-D:\SteamLibrary\steamapps\common\RimWorld\Mods\AlmightyOlivePatches\Assemblies\AlmightyOlivePatches.dll
-D:\SteamLibrary\steamapps\common\RimWorld\Mods\AlmightyOlivePatches\Source\AlmightyOlivePatches\obj\Debug\AlmightyOlivePatches.csproj.AssemblyReference.cache
-D:\SteamLibrary\steamapps\common\RimWorld\Mods\AlmightyOlivePatches\Source\AlmightyOlivePatches\obj\Debug\AlmightyOlivePatches.csproj.CoreCompileInputs.cache
-D:\SteamLibrary\steamapps\common\RimWorld\Mods\AlmightyOlivePatches\Source\AlmightyOlivePatches\obj\Debug\AlmightyOlivePatches.dll

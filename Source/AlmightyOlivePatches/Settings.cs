@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -77,13 +78,18 @@ namespace AlmightyOlivePatches
     /// See <a href='https://ludeon.com/forums/index.php?topic=50262.0'>this</a> and <a href='https://ludeon.com/forums/index.php?topic=50275.0'>this</a>
     /// </summary>
     [StaticConstructorOnStartup]
-    public class OnDefsLoaded
+    public static class OnDefsLoaded
     {
         /// <summary>
         /// Apply settings to Defs when Defs are loaded
         /// </summary>
         static OnDefsLoaded()
         {
+            foreach (AbilityDef def in DefDatabase<AbilityDef>.AllDefs)
+            {
+                Log.Message("Ability: " + def.defName);
+            }
+
             ApplySettingsToDefs();
         }
 
@@ -92,13 +98,6 @@ namespace AlmightyOlivePatches
         /// </summary>
         public static void ApplySettingsToDefs()
         {
-            Log.Error("Apply Settings To Defs:");
-
-            foreach (AbilityDef def in DefDatabase<AbilityDef>.AllDefs)
-            {
-                Log.Error(def.defName);
-            }
-
            AbilityDef convertAbility = DefDatabase<AbilityDef>.GetNamed("Convert");
            if (convertAbility != null)
            {

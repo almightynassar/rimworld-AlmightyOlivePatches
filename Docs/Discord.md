@@ -1,33 +1,5 @@
-# Discord Chat logs
+#  RimWorld's loading process
 
-## almightynassar — Today at 18:12
-
-Hey everyone, just starting out and I can't find the answer to a particular question.....
-
-Trying to change an AbilityDef (Convert's convertPowerFactor in this case), and placed the code under StaticConstructorOnStartup so that it is executed after RimWorld has loaded. Issue is that the DefDatabase hasn't loaded AbilityDefs at this stage, so it cannot find the Convert AbilityDef at startup. The code works fine when you edit it in my Mod Setting since by then the AbilityDef is now loaded (tested changing the factor on both the title screen and in a running game. The tool-tip for convert reflects the new power factor value).
-
-What am I missing? I thought Defs are meant to be loaded by the time StaticConstructorOnStartup boots up my code, but it's giving me start-up errors that the Convert AbilityDef isn't loaded (in fact no AbilityDefs are loaded). I had a look at hooks but they don't really meet my needs; I just want to load up my new custom value on start up.
-
-My code on github (from line 79 onwards):
-
-https://github.com/almightynassar/rimworld-AlmightyOlivePatches/blob/main/Source/AlmightyOlivePatches/Settings.cs
-
-## Nabber — Today at 18:16
-
-Refer to the pins to see the order the game actually loads stuff in, the static constructors are in fact loaded quite late, but if you are working with settings you are actually working at Mod subclass creation time
-
-When working with settings I always use the DefName and then have a property that resolves the string to its corresponding Def
-
-Like this. The string is scribed and persisted and the runtime code simply uses the property
-
-```
-public override string Label => $"{ButtonTranslationKey.Translate()}: {TargetRace.label}";
-string targetRaceDefName;
-ThingDef TargetRace => targetRaceDefName == null ? null ? ThingDef.Named(targetRaceDefName);
-```
-
-## legodude17, Almighty Verb-Lord — 01/04/2022
-@Nabber Bit late, but here's RimWorld's whole loading process in order:
 1. Build mod list
 2. Load mod load folders
 3. Load all mod assemblies, in load order
